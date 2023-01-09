@@ -2,6 +2,7 @@
 from ImageSelection import ImageSelection
 import math
 
+
 # Completes all Image Dimensioning and Dimension Computations
 class ImageProperties:
     # Determine Slice Dimensioning (in Pixels)

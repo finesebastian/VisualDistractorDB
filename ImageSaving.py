@@ -1,7 +1,8 @@
 # This is the Image Saving Class
 from pathlib import Path
-import time
 import cv2
+import random
+import time
 
 
 # Completes all Saving of Images
@@ -13,7 +14,7 @@ class ImageSaving:
         # UNIX Timestamp for Uniqueness
         timestamp = int(time.time())
         # Create Temp Directory
-        temp_path = "Z:/parsed_images/" + str(timestamp)
+        temp_path = "Z:/parsed_images/" + str(timestamp) + "_" + str(random.randint(0, 999))
         # Generate Directory for Saving
         Path(temp_path).mkdir(parents=True, exist_ok=True)
         # Return Directory Path

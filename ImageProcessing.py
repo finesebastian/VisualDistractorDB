@@ -1,5 +1,6 @@
 # This is the Image Processing Class
 from ImageProperties import ImageProperties
+from ImageSaving import ImageSaving
 from ImageSelection import ImageSelection
 import numpy
 
@@ -8,18 +9,18 @@ import numpy
 class ImageProcessing:
     # Image Processor Routine
     @staticmethod
-    def image_processor(filepaths):
+    def image_processor(paths):
         # Initialize Variable
         sliced_img_tuple = []
-        # Image Processing Pipeline <- Could be Parallel Operation
-        for paths in filepaths:
-            # Get Image Dimensions
-            h_pixels, v_pixels = ImageProperties.image_pixels(paths)
-            # Determine Pixel Slicing
-            img_h_pixel_slice, img_v_pixel_slice = ImageProperties.image_dimensioning(h_pixels, v_pixels)
-            # Section Image Data with Pixel Slicing
-            sliced_img_tuple.append(ImageProcessing.image_slicer(paths, img_h_pixel_slice, img_v_pixel_slice))
-        return sliced_img_tuple
+        # Image Processing Pipeline
+        # Get Image Dimensions
+        h_pixels, v_pixels = ImageProperties.image_pixels(paths)
+        # Determine Pixel Slicing
+        img_h_pixel_slice, img_v_pixel_slice = ImageProperties.image_dimensioning(h_pixels, v_pixels)
+        # Section Image Data with Pixel Slicing
+        sliced_img_tuple.append(ImageProcessing.image_slicer(paths, img_h_pixel_slice, img_v_pixel_slice))
+        # Save Image Processing
+        ImageSaving.save_image_data(sliced_img_tuple)
 
     # Slice Image based on given dimensioning
     @staticmethod

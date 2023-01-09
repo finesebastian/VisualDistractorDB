@@ -14,7 +14,7 @@ class ImageSelection:
         root = tkinter.Tk()
         root.wm_withdraw()
         file_selections = tkinter.filedialog.askopenfilenames()
-        return file_selections
+        return list(file_selections)
 
     # Loads Image Data with Given Path
     @staticmethod
