@@ -6,7 +6,6 @@ import tkinter.ttk
 
 # Completes all path selections and image data retrievals
 class ImageSelection:
-
     # UI File Dialog for Image Processing
     @staticmethod
     def image_selector():
