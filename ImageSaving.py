@@ -1,5 +1,6 @@
 # This is the Image Saving Class
 from pathlib import Path
+from ImageDB import ImageDB
 import cv2
 import random
 
@@ -25,6 +26,8 @@ class ImageSaving:
     # Save Data
     @staticmethod
     def save_image_data(image_data):
+        # Connect to Database
+        db_conn = ImageDB.img_db_conn()
         # Iterate through LIST of parsed image SETS
         for img_sets in image_data:
             # Photo Index
