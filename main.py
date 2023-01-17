@@ -2,7 +2,6 @@
 from ImageProcessing import ImageProcessing
 from ImageSelection import ImageSelection
 import multiprocessing
-import psycopg2
 
 # Main Function for Processing
 if __name__ == '__main__':

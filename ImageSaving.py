@@ -28,6 +28,8 @@ class ImageSaving:
     def save_image_data(image_data):
         # Connect to Database
         db_conn = ImageDB.img_db_conn()
+        # Database Cursor
+        cur = db_conn.cursor()
         # Iterate through LIST of parsed image SETS
         for img_sets in image_data:
             # Photo Index
@@ -40,5 +42,14 @@ class ImageSaving:
                 img_save_path = ImageSaving.make_path(save_path, save_hash, img_index, ".jpg")
                 # Save Parsed Image with Index at Maximum Quality
                 cv2.imwrite(img_save_path, parsed_img, [cv2.IMWRITE_JPEG_QUALITY, 100])
+                # Insert into Database
+                cur.execute("INSERT INTO parsed_img_paths (img_paths, img_quad) "
+                            "VALUES (%s, %s)",
+                            (img_save_path, img_index))
                 # Increment Index
                 img_index += 1
+            # Commit Changes
+            db_conn.commit()
+            # Close Communications
+            cur.close()
+            db_conn.close()
