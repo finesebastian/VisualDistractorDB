@@ -46,7 +46,8 @@ class DBComm:
         # Database Cursor
         cur = db_conn.cursor()
         # Return Random Image Set
-        return cur.execute("SELECT img_paths, img_quad "
-                           "FROM parsed_img_paths "
-                           "WHERE img_keys IN (SELECT img_keys  FROM parsed_img_paths ORDER BY random() LIMIT 1)")
+        cur.execute("SELECT img_paths, img_quad "
+                    "FROM parsed_img_paths "
+                    "WHERE img_keys IN (SELECT img_keys  FROM parsed_img_paths ORDER BY random() LIMIT 1)")
+        return cur.fetchall()
 
