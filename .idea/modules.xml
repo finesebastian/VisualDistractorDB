@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/../RutgersRotation/.idea/DistractorBackEnd.iml" filepath="$PROJECT_DIR$/../RutgersRotation/.idea/DistractorBackEnd.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/htmlBasics.iml" filepath="$PROJECT_DIR$/.idea/htmlBasics.iml" />
     </modules>
   </component>
