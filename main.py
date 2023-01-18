@@ -1,7 +1,6 @@
 # This is the Main Class for Image Processing
 from ImageProcessing import ImageProcessing
 from ImageSelection import ImageSelection
-from DBComm import DBComm
 import multiprocessing
 
 # Main Function for Processing
