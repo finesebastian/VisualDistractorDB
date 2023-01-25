@@ -104,7 +104,7 @@
             This text will be instructions later
         </div>
         <div class="button-container">
-            <button class="done-button">
+            <button class="done-button" onclick="getNewImagePath()">
                 Done
             </button>
         </div>
@@ -125,7 +125,16 @@
     let row4 = [0,0,0,0]
     let BoolVals = [row1,row2,row3,row4]
 
-    console.log(BoolVals)
+    let QuadRow0 = [0,4,8,12]
+    let QuadRow1 = [1,5,9,13]
+    let QuadRow2 = [2,6,10,14]
+    let QuadRow3 = [3,7,11,15]
+    let Quadants = [QuadRow0,QuadRow1,QuadRow2,QuadRow3]
+
+
+    let NewImagePath;
+    let FinalImagePath = "Tree.jpg";
+
     let CurrentImgBoolean = 0
 
     let RowNum = 0
@@ -152,4 +161,60 @@
         }
         console.log(BoolVals)
     }
+
+    function getNewImagePath(){
+        //Server call to get the new path
+        //Call python script to move the files to the local directory
+        //Strip out the last two characters from the path to make it easier to append later
+        //NewImagePath = NewImagePath.substring(0, text.length-6) //Cut end off of path to append each of them in getAllImageIDs
+
+
+        getAllImageIDs()
+        sendBooleanData()
+    }
+    function getAllImageIDs (){
+        let IMGid = '00';
+        let QuadID = 0;
+        for (let row = 0; row < 4; row++){
+            for (let col = 0; col < 4; col++){
+                IMGid = row.toString().concat(col.toString())
+                QuadID = Quadants[row][col]
+                setFinalImagePath(IMGid,QuadID)
+            }
+        }
+    }
+
+    function setFinalImagePath(ImageID, QuadrantID){
+        //FinalImagePath = NewImagePath.concat("_" + QuadrantID.toString()+ ".jpg")
+        changeImage(ImageID,QuadrantID)
+
+    }
+
+    function changeImage(id){
+        //console.log(typeof id)
+        //console.log(document.getElementById(id))
+
+        document.getElementById(id).src=FinalImagePath
+    }
+
+    function sendBooleanData(){
+        console.log(BoolVals)
+        //Send the updated boolean matrix to the server
+        resetBooleans()
+    }
+
+    function resetBooleans(){
+        console.log(BoolVals)
+        for (let row = 0; row < 4;row++){
+            for (let col = 0; col < 4; col++){
+                if (BoolVals[row][col] === 1){
+                    BoolVals[row][col] = 0
+                    document.getElementById(row.toString().concat(col.toString())).style.filter = "grayscale(0%)"
+                }
+            }
+        }
+        console.log(BoolVals)
+    }
+
+
 </script>
