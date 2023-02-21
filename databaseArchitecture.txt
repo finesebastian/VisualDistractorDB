@@ -1,0 +1,16 @@
+CREATE TABLE parsed_img_paths (
+    img_index SERIAL,
+    img_keys VARCHAR(128) NOT NULL,
+    img_paths VARCHAR (255) NOT NULL,
+    img_quad INT NOT NULL,
+    PRIMARY KEY (img_index, img_keys)
+);
+CREATE TABLE parsed_img_classifications (
+    img_index INT,
+    img_keys VARCHAR NOT NULL ,
+    img_quad INT NOT NULL,
+    img_classification INT NOT NULL,
+    PRIMARY KEY (img_index, img_keys),
+    FOREIGN KEY (img_index, img_keys)
+        REFERENCES parsed_img_paths (img_index, img_keys)
+);
